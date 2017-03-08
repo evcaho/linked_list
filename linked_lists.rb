@@ -3,6 +3,7 @@ require './node.rb'
 class LinkedList
 
 	attr_reader :size
+
 	def initialize
 		@head=nil
 		@tail=nil
@@ -25,10 +26,6 @@ class LinkedList
 		@tail = node if @size == 0
 		@size = @size + 1
 		node.value
-	end
-
-	def size
-		@size
 	end
 
 	def head
@@ -64,13 +61,7 @@ class LinkedList
 	end
 
 	def contains?(data)
-		node = @head
-		return true if node.value == data
-		until node.next_node == nil
-			node = node.next_node
-			return true if node.value == data
-		end
-		false
+		find(data) != nil
 	end
 
 	def find(data)
@@ -79,7 +70,7 @@ class LinkedList
 		while node.value != data
 			count += 1
 			if node.next_node == nil
-				return "List doesn't contain #{data}"
+				return nil
 			end
 			node = node.next_node
 		end
